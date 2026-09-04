@@ -8,6 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
     "build": "prisma generate && tsc",
+    "postinstall": "prisma generate",
     "start": "node dist/server.js",
     "docs": "swagger-cli bundle openapi/index.yml -o ./swagger.yml"
   },
