@@ -3,6 +3,7 @@ import catchAsync from "../../utils/catchAsync.js";
 import sendResponse from "../../utils/sendResponse.js";
 import { AuthService } from "./auth.service.js";
 import { StatusCodes } from "http-status-codes";
+import { JwtPayload } from "../../types/index.js";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -39,20 +40,20 @@ const login = catchAsync(async (req: Request, res: Response) => {
         httpOnly: true,
         secure: isProduction,
         sameSite: "strict",
-        maxAge: 1000 * 60 * 15, // 15 minutes
+        maxAge: 1000 * 60 * 20, // 20 minutes
     });
 
     res.cookie("refreshToken", result.refreshToken, {
         httpOnly: true,
         secure: isProduction,
         sameSite: "strict",
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+        maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days
     });
 
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
-        message: "Logged in successfully.",
+        message: `welcome ${result.user.fullName}, you are Logged in successfully.`,
         data: { accessToken: result.accessToken },
     });
 });
@@ -115,7 +116,27 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
         statusCode: StatusCodes.OK,
         success: true,
         message: "Tokens refreshed successfully.",
-        data: null,
+        data: { accessToken: result.newAccessToken },
+    });
+});
+const logoutUser = catchAsync(async (req: Request, res: Response) => {
+    const token = req.cookies.refreshToken;
+
+    const result = await AuthService.logoutUser(token);
+    sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: "User logged out successfully.",
+        data: result,
+    });
+});
+const getMe = catchAsync(async (req: Request, res: Response) => {
+    const result = await AuthService.getMe(req.user as JwtPayload);
+    sendResponse(res, {
+        statusCode: StatusCodes.OK,
+        success: true,
+        message: `Welcome ${result?.fullName}, you are authorized user.`,
+        data: result,
     });
 });
 
@@ -127,4 +148,6 @@ export const AuthController = {
     verifyForgotPasswordOTP,
     resetPassword,
     refreshToken,
+    logoutUser,
+    getMe
 };

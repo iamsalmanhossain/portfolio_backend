@@ -16,3 +16,4 @@ project.md
 *.log
 npm-debug.log*
 pnpm-debug.log*
+auth-test.md

@@ -1,5 +1,8 @@
 -- CreateEnum
-CREATE TYPE "UserStatus" AS ENUM ('ACTIVE', 'BLOCKED');
+CREATE TYPE "UserStatus" AS ENUM ('ACTIVE', 'BLOCKED', 'DELETED');
+
+-- CreateEnum
+CREATE TYPE "UserRole" AS ENUM ('ADMIN', 'USER');
 
 -- CreateEnum
 CREATE TYPE "ProjectStatus" AS ENUM ('DRAFT', 'PUBLISHED', 'ARCHIVED');
@@ -214,7 +217,10 @@ CREATE TABLE "Service" (
 CREATE TABLE "Session" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
+    "sessionId" TEXT NOT NULL,
     "refreshToken" TEXT NOT NULL,
+    "deviceInfo" TEXT,
+    "ipAddress" TEXT,
     "expiresAt" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -268,9 +274,12 @@ CREATE TABLE "User" (
     "fullName" TEXT NOT NULL,
     "avatar" TEXT,
     "bio" TEXT,
+    "role" "UserRole" NOT NULL DEFAULT 'USER',
     "isVerified" BOOLEAN NOT NULL DEFAULT false,
     "isTwoFactorEnabled" BOOLEAN NOT NULL DEFAULT false,
     "status" "UserStatus" NOT NULL DEFAULT 'ACTIVE',
+    "deletedAt" TIMESTAMP(3),
+    "deleteAfter" TIMESTAMP(3),
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

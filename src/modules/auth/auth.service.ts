@@ -13,7 +13,7 @@ import {
     ForgotPasswordType,
     ResetPasswordType,
 } from "./auth.validation.js";
-import { JwtPayload } from "../../types/index.js";
+import { GetMePayload, JwtPayload } from "../../types/index.js";
 import {
     createAccessToken,
     createRefreshToken,
@@ -140,7 +140,7 @@ const loginUser = async (payload: UserLoginType, userAgent?: string, ip?: string
         },
     });
 
-    return { accessToken, refreshToken };
+    return { accessToken, refreshToken, user };
 };
 
 // ─────────────────────────────────────────────
@@ -232,6 +232,32 @@ const refreshToken = async (token: string) => {
     return { newAccessToken, newRefreshToken };
 };
 
+const logoutUser = async (token: string) => {
+    const payload = verifyRefreshToken(token);
+    if (!payload) {
+        throw new AppError(StatusCodes.UNAUTHORIZED, "Invalid refresh token");
+    }
+
+    await prisma.session.deleteMany({ where: { userId: payload.userId } });
+    return { message: "User logged out successfully" };
+};
+const getMe = async (user: JwtPayload) => {
+    if (!user || !user.email) {
+        throw new AppError(StatusCodes.UNAUTHORIZED, "User not found or token invalid");
+    }
+    const userData = await prisma.user.findUnique({
+        where: { email: user.email },
+        select: {
+            id: true,
+            fullName: true,
+            email: true,
+            role: true,
+            status: true
+        }
+    });
+    return userData;
+};
+
 export const AuthService = {
     registerUser,
     verifyEmail,
@@ -240,4 +266,6 @@ export const AuthService = {
     verifyForgotPasswordOTP,
     resetPassword,
     refreshToken,
+    logoutUser,
+    getMe
 };

@@ -71,9 +71,12 @@ router.post(
 router.get(
     "/me",
     isAuthenticated,
-    (req, res) => {
-        res.status(200).json({ success: true, message: "Authorized user data", user: req.user });
-    }
+    AuthController.getMe
+);
+router.delete(
+    "/logout",
+    isAuthenticated,
+    AuthController.logoutUser
 );
 
 export const AuthRoutes = router;

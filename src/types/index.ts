@@ -15,3 +15,12 @@ export interface RefreshTokenPayload {
     email: string;
     sessionId: string;
 }
+
+export interface GetMePayload {
+    id: string;
+    fullName: string
+    email: string;
+    role: string;
+    status:string
+
+}
