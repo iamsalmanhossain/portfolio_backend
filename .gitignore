@@ -17,3 +17,4 @@ project.md
 npm-debug.log*
 pnpm-debug.log*
 auth-test.md
+vercel-deploy.md
