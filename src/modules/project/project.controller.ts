@@ -15,12 +15,20 @@ const createProject = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllProjects = catchAsync(async (req: Request, res: Response) => {
-  const result = await ProjectService.getAllProjects();
+  const options = {
+    page: Number(req.query.page) || 1,
+    limit: Number(req.query.limit) || 10,
+    sortBy: (req.query.sortBy as string) || 'createdAt',
+    sortOrder: (req.query.sortOrder as string) || 'desc',
+  };
+
+  const result = await ProjectService.getAllProjects(options);
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
     message: "Projects retrieved successfully",
-    data: result,
+    meta: result.meta,
+    data: result.data,
   });
 });
 

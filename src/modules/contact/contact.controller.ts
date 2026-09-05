@@ -15,13 +15,31 @@ const saveMessage = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getMessages = catchAsync(async (req: Request, res: Response) => {
-  const result = await ContactService.getMessages();
-  sendResponse(res, {
-    statusCode: StatusCodes.OK,
-    success: true,
-    message: "Messages retrieved successfully",
-    data: result,
-  });
+  try {
+    const options = {
+      page: Number(req.query.page) || 1,
+      limit: Number(req.query.limit) || 10,
+      sortBy: (req.query.sortBy as string) || 'createdAt',
+      sortOrder: (req.query.sortOrder as string) || 'desc',
+    };
+
+    const result = await ContactService.getMessages(options)
+
+    sendResponse(res, {
+      statusCode: StatusCodes.OK,
+      success: true,
+      message: "Messages retrieved successfully",
+      meta:result.meta,
+      data:result.data,
+    });
+  } catch (error) {
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        success: false,
+        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+        message: "Failed to retrieve messages",
+        errorMessages: [error],
+      });
+  }
 });
 
 const deleteMessage = catchAsync(async (req: Request, res: Response) => {

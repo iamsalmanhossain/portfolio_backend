@@ -15,12 +15,20 @@ const createExperience = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllExperiences = catchAsync(async (req: Request, res: Response) => {
-  const result = await ExperienceService.getAllExperiences();
+  const options = {
+    page: Number(req.query.page) || 1,
+    limit: Number(req.query.limit) || 10,
+    sortBy: (req.query.sortBy as string) || 'startDate',
+    sortOrder: (req.query.sortOrder as string) || 'desc',
+  };
+
+  const result = await ExperienceService.getAllExperiences(options);
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
     message: "Experiences retrieved successfully",
-    data: result,
+    meta: result.meta,
+    data: result.data,
   });
 });
 

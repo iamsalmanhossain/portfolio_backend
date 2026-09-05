@@ -30,7 +30,7 @@ const moduleRoutes = [
         route: ExperienceRoutes,
     },
     {
-        path: "/contact",
+        path: "/contacts",
         route: ContactRoutes,
     }
 ];
