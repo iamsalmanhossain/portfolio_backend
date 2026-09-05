@@ -5,6 +5,7 @@ import { ProjectRoutes } from "../../modules/project/project.route.js";
 import { SkillRoutes } from "../../modules/skill/skill.route.js";
 import { ExperienceRoutes } from "../../modules/experience/experience.route.js";
 import { ContactRoutes } from "../../modules/contact/contact.route.js";
+import { UploadRoutes } from "../../modules/upload/upload.route.js";
 
 const router: Router = Router();
 
@@ -32,6 +33,10 @@ const moduleRoutes = [
     {
         path: "/contacts",
         route: ContactRoutes,
+    },
+    {
+        path: "/upload",
+        route: UploadRoutes,
     }
 ];
 
