@@ -43,7 +43,7 @@ Experience Module-এর API-গুলো Postman-এ টেস্ট করা�
 এই রিকোয়েস্টের মাধ্যমে ডাটাবেজে থাকা আপনার সব কাজের অভিজ্ঞতা দেখা যাবে। এটি একটি পাবলিক রুট।
 
 - **Method:** `GET`
-- **URL:** `http://localhost:5000/api/v1/experiences`
+- **URL:** `http://localhost:5000/api/v1/experiences?page=1&limit=10&sortBy=startDate&sortOrder=desc` (প্যারামিটারগুলো ঐচ্ছিক, চাইলে শুধু `/experiences` দিয়েও রিকোয়েস্ট পাঠানো যাবে)
 - **Headers:** `none`
 - **Body:** `none`
 
