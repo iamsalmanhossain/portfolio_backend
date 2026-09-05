@@ -1,17 +1,39 @@
-﻿import { prisma } from "../../lib/prisma.js";
+import { prisma } from "../../lib/prisma.js";
+import { paginationHelper } from "../../utils/paginationHelper.js";
+import { TCreateProject, TUpdateProject } from "./project.validation.js";
 
-const createProject = async (payload: any) => {
+const createProject = async (payload: TCreateProject) => {
   const slug = payload.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
   return await prisma.project.create({
     data: { ...payload, slug },
   });
 };
 
-const getAllProjects = async () => {
-  return await prisma.project.findMany({
+const getAllProjects = async (options: {
+  page?: number,
+  limit?: number,
+  sortBy?: string,
+  sortOrder?: string
+}) => {
+  const { page, limit, skip, sortBy, sortOrder } = paginationHelper.calculatePagination(options);
+
+  const result = await prisma.project.findMany({
+    skip,
+    take: limit,
     include: { category: true },
-    orderBy: { createdAt: "desc" }
+    orderBy: { [sortBy]: sortOrder }
   });
+
+  const total = await prisma.project.count();
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+      totalPage: Math.ceil(total / limit)
+    },
+    data: result
+  };
 };
 
 const getProjectById = async (id: string) => {
@@ -21,13 +43,14 @@ const getProjectById = async (id: string) => {
   });
 };
 
-const updateProject = async (id: string, payload: any) => {
+const updateProject = async (id: string, payload: TUpdateProject) => {
+  const updateData: any = { ...payload };
   if (payload.title) {
-    payload.slug = payload.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
+    updateData.slug = payload.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
   }
   return await prisma.project.update({
     where: { id },
-    data: payload,
+    data: updateData,
   });
 };
 
