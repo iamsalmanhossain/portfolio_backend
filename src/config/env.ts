@@ -14,6 +14,9 @@ const env = {
     smtp_user: process.env.SMTP_USER,
     smtp_pass: process.env.SMTP_PASS,
     node_env: process.env.NODE_ENV || 'development',
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME || '',
+    api_key: process.env.CLOUDINARY_API_KEY || '',
+    api_secret: process.env.CLOUDINARY_API_SECRET || '',
 }
 
 export default env
