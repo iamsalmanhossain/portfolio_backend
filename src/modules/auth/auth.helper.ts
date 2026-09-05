@@ -3,10 +3,10 @@ import env from "../../config/env.js";
 import { JwtPayload, RefreshTokenPayload } from "../../types/index.js";
 
 /**
- * Creates a JWT access token valid for 15 minutes.
+ * Creates a JWT access token valid for 30 minutes.
  */
 export const createAccessToken = (payload: JwtPayload) => {
-    return jwt.sign(payload, env.jwt_access_secret, { expiresIn: "15m" });
+    return jwt.sign(payload, env.jwt_access_secret, { expiresIn: "30m" });
 };
 
 /**
@@ -31,7 +31,7 @@ export const verifyRefreshToken = (token: string) => {
 };
 
 export const createTempLoginToken = (payload: { userId: string; email: string }) => {
-    return jwt.sign(payload, env.jwt_temp_secret, { expiresIn: "5m" });
+    return jwt.sign(payload, env.jwt_temp_secret, { expiresIn: "15m" });
 };
 
 export const verifyTempLoginToken = (token: string) => {
