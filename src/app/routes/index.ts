@@ -14,6 +14,7 @@ import { EducationRoutes } from "../../modules/education/education.route.js";
 import { ServiceRoutes } from "../../modules/service/service.route.js";
 import { TestimonialRoutes } from "../../modules/testimonial/testimonial.route.js";
 import { BlogRoutes } from "../../modules/blog/blog.route.js";
+import { CertificateRoutes } from "../../modules/certificate/certificate.route.js";
 
 const router: Router = Router();
 
@@ -77,6 +78,10 @@ const moduleRoutes = [
     {
         path: "/blogs",
         route: BlogRoutes,
+    },
+    {
+        path: "/certificates",
+        route: CertificateRoutes,
     }
 ];
 

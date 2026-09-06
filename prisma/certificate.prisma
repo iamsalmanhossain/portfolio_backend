@@ -4,6 +4,7 @@ model Certificate {
   title         String
   issuer        String
   credentialUrl String?
+  image         String?
 
   issueDate DateTime?
 
