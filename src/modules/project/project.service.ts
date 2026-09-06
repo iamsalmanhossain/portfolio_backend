@@ -20,7 +20,10 @@ const getAllProjects = async (options: {
   const result = await prisma.project.findMany({
     skip,
     take: limit,
-    include: { category: true },
+    include: { 
+      category: true,
+      _count: { select: { projectViews: true } }
+    },
     orderBy: { [sortBy]: sortOrder }
   });
 
@@ -39,7 +42,10 @@ const getAllProjects = async (options: {
 const getProjectById = async (id: string) => {
   return await prisma.project.findUnique({
     where: { id },
-    include: { category: true, images: true },
+    include: { 
+      category: true,
+      _count: { select: { projectViews: true } }
+    },
   });
 };
 

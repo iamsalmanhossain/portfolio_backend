@@ -1,7 +1,9 @@
-﻿import { Router } from "express";
+import { Router } from "express";
 import { AuthRoutes } from "../../modules/auth/auth.route.js";
 import { DashboardRoutes } from "../../modules/dashboard/dashboard.route.js";
 import { ProjectRoutes } from "../../modules/project/project.route.js";
+import { ProjectCategoryRoutes } from "../../modules/projectCategory/projectCategory.route.js";
+import { ProjectViewRoutes } from "../../modules/projectView/projectView.route.js";
 import { SkillRoutes } from "../../modules/skill/skill.route.js";
 import { ExperienceRoutes } from "../../modules/experience/experience.route.js";
 import { ContactRoutes } from "../../modules/contact/contact.route.js";
@@ -21,6 +23,14 @@ const moduleRoutes = [
     {
         path: "/projects",
         route: ProjectRoutes,
+    },
+    {
+        path: "/project-categories",
+        route: ProjectCategoryRoutes,
+    },
+    {
+        path: "/project-views",
+        route: ProjectViewRoutes,
     },
     {
         path: "/skills",
