@@ -6,6 +6,7 @@ import { ProjectController } from "./project.controller.js";
 
 const router = Router();
 
+// Project Routes
 router.post("/", isAuthenticated, validateRequest(createProjectValidationSchema), ProjectController.createProject);
 router.get("/", ProjectController.getAllProjects);
 router.get("/:id", ProjectController.getProjectById);
