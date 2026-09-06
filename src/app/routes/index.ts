@@ -12,6 +12,7 @@ import { HeroRoutes } from "../../modules/heroSection/hero.route.js";
 import { SocialLinkRoutes } from "../../modules/socialLinks/socialLink.route.js";
 import { EducationRoutes } from "../../modules/education/education.route.js";
 import { ServiceRoutes } from "../../modules/service/service.route.js";
+import { TestimonialRoutes } from "../../modules/testimonial/testimonial.route.js";
 
 const router: Router = Router();
 
@@ -67,6 +68,10 @@ const moduleRoutes = [
     {
         path: "/services",
         route: ServiceRoutes,
+    },
+    {
+        path: "/testimonials",
+        route: TestimonialRoutes,
     }
 ];
 
