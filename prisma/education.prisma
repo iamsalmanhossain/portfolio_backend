@@ -4,7 +4,7 @@ model Education {
   institute String
   degree    String
   field     String?
-
+  image     String?
   startYear Int
   endYear   Int?
 
