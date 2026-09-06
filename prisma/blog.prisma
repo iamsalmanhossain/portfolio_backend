@@ -4,12 +4,15 @@ model Blog {
 
   title     String
   slug      String  @unique
+  summary   String?
   content   String
   thumbnail String?
+  tags      String[]
 
   isPublished Boolean @default(false)
   viewCount   Int     @default(0)
 
+  publishedAt DateTime?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
