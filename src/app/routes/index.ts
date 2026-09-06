@@ -15,6 +15,7 @@ import { ServiceRoutes } from "../../modules/service/service.route.js";
 import { TestimonialRoutes } from "../../modules/testimonial/testimonial.route.js";
 import { BlogRoutes } from "../../modules/blog/blog.route.js";
 import { CertificateRoutes } from "../../modules/certificate/certificate.route.js";
+import { SeoSettingRoutes } from "../../modules/seoSetting/seoSetting.route.js";
 
 const router: Router = Router();
 
@@ -82,6 +83,10 @@ const moduleRoutes = [
     {
         path: "/certificates",
         route: CertificateRoutes,
+    },
+    {
+        path: "/seo-settings",
+        route: SeoSettingRoutes,
     }
 ];
 

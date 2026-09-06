@@ -1,10 +1,18 @@
 model SeoSetting {
   id String @id @default(cuid())
 
+  siteName        String?
   metaTitle       String
   metaDescription String
+  metaKeywords    String[]
+  author          String?
+  favicon         String?
 
-  ogImage String?
+  ogTitle         String?
+  ogDescription   String?
+  ogImage         String?
+
+  twitterCard     String? @default("summary_large_image")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
