@@ -3,7 +3,12 @@ model SocialLink {
 
   platform String
   url      String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  iconUrl  String?
+  
+  heroSectionId String
+  heroSection   HeroSection @relation(fields: [heroSectionId], references: [id], onDelete: Cascade)
+  
+  isActive        Boolean  @default(true) 
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }

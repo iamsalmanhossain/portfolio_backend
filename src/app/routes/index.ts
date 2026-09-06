@@ -8,6 +8,9 @@ import { SkillRoutes } from "../../modules/skill/skill.route.js";
 import { ExperienceRoutes } from "../../modules/experience/experience.route.js";
 import { ContactRoutes } from "../../modules/contact/contact.route.js";
 import { UploadRoutes } from "../../modules/upload/upload.route.js";
+import { HeroRoutes } from "../../modules/heroSection/hero.route.js";
+import { SocialLinkRoutes } from "../../modules/socialLinks/socialLink.route.js";
+import { EducationRoutes } from "../../modules/education/education.route.js";
 
 const router: Router = Router();
 
@@ -47,6 +50,18 @@ const moduleRoutes = [
     {
         path: "/upload",
         route: UploadRoutes,
+    },
+    {
+        path: "/hero",
+        route: HeroRoutes,
+    },
+    {
+        path: "/social-links",
+        route: SocialLinkRoutes,
+    },
+    {
+        path: "/educations",
+        route: EducationRoutes,
     }
 ];
 
