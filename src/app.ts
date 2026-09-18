@@ -13,7 +13,7 @@ const createApp = () => {
     app.use(express.json());
     app.use(cookieParser());
     app.use(cors());
-    app.use(rateLimit());
+    // app.use(rateLimit());
 
     // Application Routes
     app.use("/api/v1", router);

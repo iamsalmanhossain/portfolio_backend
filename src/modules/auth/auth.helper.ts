@@ -1,4 +1,4 @@
-﻿import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import env from "../../config/env.js";
 import { JwtPayload, RefreshTokenPayload } from "../../types/index.js";
 
@@ -6,7 +6,7 @@ import { JwtPayload, RefreshTokenPayload } from "../../types/index.js";
  * Creates a JWT access token valid for 30 minutes.
  */
 export const createAccessToken = (payload: JwtPayload) => {
-    return jwt.sign(payload, env.jwt_access_secret, { expiresIn: "30m" });
+    return jwt.sign(payload, env.jwt_access_secret, { expiresIn: "7d" });
 };
 
 /**

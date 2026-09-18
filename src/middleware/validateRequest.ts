@@ -23,10 +23,11 @@ const validateRequest = (schema: ZodTypeAny) => {
                 });
                 return;
             }
-            if (result.data.body) req.body = result.data.body;
-            if (result.data.query) req.query = result.data.query;
-            if (result.data.params) req.params = result.data.params;
-            if (result.data.cookies) req.cookies = result.data.cookies;
+            const data = result.data as any;
+            if (data.body) req.body = data.body;
+            if (data.query) req.query = data.query;
+            if (data.params) req.params = data.params;
+            if (data.cookies) req.cookies = data.cookies;
             next();
         } catch (error) {
             next(error);

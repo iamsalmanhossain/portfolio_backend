@@ -16,6 +16,7 @@ const createTemplate = async (payload: any) => {
       isActive: payload.isActive || false,
       personalData: payload.personalData || {},
       websiteData: payload.websiteData || {},
+      seoData: payload.seoData || {},
     },
   });
 
