@@ -16,6 +16,7 @@ import { TestimonialRoutes } from "../../modules/testimonial/testimonial.route.j
 import { BlogRoutes } from "../../modules/blog/blog.route.js";
 import { CertificateRoutes } from "../../modules/certificate/certificate.route.js";
 import { SeoSettingRoutes } from "../../modules/seoSetting/seoSetting.route.js";
+import { AdminPortfolioRoutes } from "../../modules/adminPortfolio/adminPortfolio.route.js";
 
 const router: Router = Router();
 
@@ -87,6 +88,10 @@ const moduleRoutes = [
     {
         path: "/seo-settings",
         route: SeoSettingRoutes,
+    },
+    {
+        path: "/admin-portfolio",
+        route: AdminPortfolioRoutes,
     }
 ];
 

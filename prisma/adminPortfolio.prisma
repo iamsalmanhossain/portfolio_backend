@@ -1,0 +1,21 @@
+model AdminPortfolioTemplate {
+  id String @id @default(cuid())
+
+  // টেমপ্লেটের নাম (যেমন: "Minimalist Theme", "Developer Dark")
+  templateName String
+
+  // কোনটি হোমপেজে দেখাবে তা নির্ধারণ করতে
+  isActive Boolean @default(false)
+
+  // আপনার ব্যক্তিগত সমস্ত ডাটা (Hero, About, Skills, Social Links)
+  personalData Json
+
+  // SEO ডাটা
+  seoData Json
+
+  // ওয়েবসাইটের ডিজাইন এবং অন্যান্য ডাটা (Projects, Experiences, Theme Configuration)
+  websiteData Json
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

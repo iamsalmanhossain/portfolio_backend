@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const createHeroValidationSchema = z.object({
+export const createHeroValidationSchema = z.object({ body: z.object({
     heroTitle: z.string().min(1, "Hero Title is required"),
     designations: z.array(z.string()).min(1, "At least one designation is required"),
     heroDescription: z.string().optional(),
@@ -13,9 +13,9 @@ export const createHeroValidationSchema = z.object({
     phone: z.string().optional(),
     location: z.string().optional(),
     isActive: z.boolean().default(true),
-});
+})});
 
-export const updateHeroValidationSchema = z.object({
+export const updateHeroValidationSchema = z.object({ body: z.object({
     heroTitle: z.string().optional(),
     designations: z.array(z.string()).optional(),
     heroDescription: z.string().optional(),
@@ -28,7 +28,9 @@ export const updateHeroValidationSchema = z.object({
     phone: z.string().optional(),
     location: z.string().optional(),
     isActive: z.boolean().optional(),
-});
+})});
 
-export type TCreateHero = z.infer<typeof createHeroValidationSchema>;
-export type TUpdateHero = z.infer<typeof updateHeroValidationSchema>;
+export type TCreateHero = z.infer<typeof createHeroValidationSchema>['body'];
+export type TUpdateHero = z.infer<typeof updateHeroValidationSchema>['body'];
+
+
