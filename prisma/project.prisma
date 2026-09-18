@@ -1,15 +1,15 @@
 model Project {
-  id          String @id @default(cuid())
+  id String @id @default(cuid())
 
-  title       String
-  slug        String @unique
+  title String
+  slug  String @unique
 
   // সামারি এবং বিস্তারিত
-  description String   // প্রজেক্ট কার্ডে দেখানোর জন্য ছোট ডেসক্রিপশন
-  content     String?  // (Rich Text) যেখানে Overview, Problem, Solution বিস্তারিত থাকবে
+  description String // প্রজেক্ট কার্ডে দেখানোর জন্য ছোট ডেসক্রিপশন
+  content     String? // (Rich Text) যেখানে Overview, Problem, Solution বিস্তারিত থাকবে
   features    String[] // মূল ফিচারগুলোর লিস্ট (যেমন: ["Auth", "Stripe Payment"])
 
-  thumbnails  String[] // প্রজেক্টের কাভার ইমেজগুলো (একের অধিক)
+  thumbnails String[] // প্রজেক্টের কাভার ইমেজগুলো (একের অধিক)
 
   // প্রজেক্ট লিংকস (পরিবর্তন করা হয়েছে)
   liveUrl           String?
@@ -19,21 +19,21 @@ model Project {
 
   // টেকনিক্যাল বিষয়
   technologies String[]
-  role         String?  // আপনার ভূমিকা (যেমন: "Full-Stack Developer")
-  
+  role         String? // আপনার ভূমিকা (যেমন: "Full-Stack Developer")
+
   // প্রজেক্টের সময়কাল (ঐচ্ছিক)
-  startDate    DateTime?
-  endDate      DateTime?
+  startDate DateTime?
+  endDate   DateTime?
 
   // স্ট্যাটাস এবং মেটাডেটা
-  featured     Boolean       @default(false)
-  status       ProjectStatus @default(PUBLISHED)
+  featured Boolean       @default(false)
+  status   ProjectStatus @default(PUBLISHED)
 
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // রিলেশনস (আপনার করা বর্তমান চমৎকার ডিজাইন)
-  tags         String[]         // প্রজেক্টের ট্যাগসমূহ (যেমন: "Frontend", "Backend")
+  tags         String[] // প্রজেক্টের ট্যাগসমূহ (যেমন: "Frontend", "Backend")
   categoryId   String?
   category     ProjectCategory? @relation(fields: [categoryId], references: [id])
   projectViews ProjectView[]

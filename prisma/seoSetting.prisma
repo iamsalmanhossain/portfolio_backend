@@ -8,11 +8,11 @@ model SeoSetting {
   author          String?
   favicon         String?
 
-  ogTitle         String?
-  ogDescription   String?
-  ogImage         String?
+  ogTitle       String?
+  ogDescription String?
+  ogImage       String?
 
-  twitterCard     String? @default("summary_large_image")
+  twitterCard String? @default("summary_large_image")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

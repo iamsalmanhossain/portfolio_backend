@@ -1,31 +1,32 @@
 model HeroSection {
-  id              String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // --- হিরো সেকশন (Hero Section) ---
-  heroTitle       String   // যেমন: "Hi, I am John Doe"
+  heroTitle       String // যেমন: "Hi, I am John Doe"
   designations    String[] // heroSubtitle-এর বদলে (যেমন: ["Backend Dev", "Node.js Expert"])
-  heroDescription String?  // হিরো সেকশনের ছোট বায়ো
+  heroDescription String? // হিরো সেকশনের ছোট বায়ো
 
   // --- মিডিয়া (Media) ---
-  profileImage    String?  // আপনার ছবি
-  resumeUrl       String?  // CV ডাউনলোড লিংক
+  profileImage String? // আপনার ছবি
+  resumeUrl    String? // CV ডাউনলোড লিংক
 
   // --- অ্যাবাউট সেকশন (About Section) ---
-  about           String   // (Rich Text) বিস্তারিত আপনার সম্পর্কে
-  experienceYears Int?     @default(0) // কত বছরের অভিজ্ঞতা (যেমন: 2)
-  totalProjects   Int?     @default(0) // কতগুলো প্রজেক্ট করেছেন (যেমন: 15)
+  about           String // (Rich Text) বিস্তারিত আপনার সম্পর্কে
+  experienceYears Int?   @default(0) // কত বছরের অভিজ্ঞতা (যেমন: 2)
+  totalProjects   Int?   @default(0) // কতগুলো প্রজেক্ট করেছেন (যেমন: 15)
+  totalToolsAndTech Int?   @default(0)
 
   // --- কন্টাক্ট এবং সোশ্যাল লিংক (Contact & Social) ---
-  email           String?
-  phone           String?
-  location        String?  // যেমন: "Dhaka, Bangladesh"
-  
+  email    String?
+  phone    String?
+  location String? // যেমন: "Dhaka, Bangladesh"
+
   // social links
   socialLinks SocialLink[]
 
   // --- মেটাডেটা (Metadata) ---
-  isActive        Boolean  @default(true) // একাধিক প্রোফাইল ডেটা থাকলে কোনটি দেখাবে
+  isActive Boolean @default(true) // একাধিক প্রোফাইল ডেটা থাকলে কোনটি দেখাবে
 
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

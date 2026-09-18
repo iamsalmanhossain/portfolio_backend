@@ -3,7 +3,7 @@ model Blog {
   id String @id @default(cuid())
 
   title     String
-  slug      String  @unique
+  slug      String   @unique
   summary   String?
   content   String
   thumbnail String?
@@ -13,6 +13,6 @@ model Blog {
   viewCount   Int     @default(0)
 
   publishedAt DateTime?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }

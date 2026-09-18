@@ -1,4 +1,4 @@
-﻿import { z } from "zod";
+import { z } from "zod";
 
 // Validation schema for creating a technical skill entry
 export const createSkillValidationSchema = z.object({
@@ -7,6 +7,7 @@ export const createSkillValidationSchema = z.object({
     icon: z.string().optional(),
     level: z.number().min(0).max(100).default(80),
     category: z.enum(["FRONTEND", "BACKEND", "DATABASE", "DEVOPS", "TOOL"]).default("FRONTEND"),
+    showIn3d: z.boolean().default(true),
   }),
 });
 
@@ -16,5 +17,6 @@ export const updateSkillValidationSchema = z.object({
     icon: z.string().optional(),
     level: z.number().min(0).max(100).optional(),
     category: z.enum(["FRONTEND", "BACKEND", "DATABASE", "DEVOPS", "TOOL"]).optional(),
+    showIn3d: z.boolean().optional(),
   }),
 });
