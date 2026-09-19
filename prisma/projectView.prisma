@@ -1,5 +1,5 @@
 model ProjectView {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   projectId String
 
