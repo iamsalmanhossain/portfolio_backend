@@ -1,5 +1,5 @@
 model Education {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   institute String
   degree    String
