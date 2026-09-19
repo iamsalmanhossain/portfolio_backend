@@ -1,5 +1,5 @@
 model SocialLink {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   platform String
   url      String

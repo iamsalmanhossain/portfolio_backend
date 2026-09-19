@@ -1,5 +1,5 @@
 model Experience {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   company     String
   position    String

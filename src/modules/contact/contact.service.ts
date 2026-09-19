@@ -7,26 +7,36 @@ const saveMessage = async (payload: any) => {
   });
 };
 
-const getMessages = async (options: { page?: number, limit?: number, sortBy?: string, sortOrder?: string }) => {
-  const { page, limit, skip, sortBy, sortOrder } = paginationHelper.calculatePagination(options)
-  const where = {}
-  const data =await prisma.contactMessage.findMany({
+const getMessages = async (options: { page?: number, limit?: number, sortBy?: string, sortOrder?: string, status?: string }) => {
+  const { page, limit, skip, sortBy, sortOrder } = paginationHelper.calculatePagination(options);
+  const where: any = {};
+  if (options.status) {
+    where.status = options.status;
+  }
+  const data = await prisma.contactMessage.findMany({
     skip,
     take: limit,
     orderBy: { [sortBy]: sortOrder },
     where,
   });
 
-  const total = await prisma.contactMessage.count()
+  const total = await prisma.contactMessage.count({ where });
   return {
-    meta:{
+    meta: {
       page,
       limit,
       total,
-      totalPage:Math.ceil(total/limit)
+      totalPage: Math.ceil(total / limit)
     },
     data
   }
+};
+
+const markAsRead = async (id: string) => {
+  return await prisma.contactMessage.update({
+    where: { id },
+    data: { status: 'READ' }
+  });
 };
 
 const deleteMessage = async (id: string) => {
@@ -38,5 +48,6 @@ const deleteMessage = async (id: string) => {
 export const ContactService = {
   saveMessage,
   getMessages,
+  markAsRead,
   deleteMessage,
 };

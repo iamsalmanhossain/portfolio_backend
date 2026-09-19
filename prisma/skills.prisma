@@ -1,5 +1,5 @@
 model Skill {
-  id       String        @id @default(cuid())
+  id       String        @id @default(uuid())
   name     String
   icon     String?
   level    Int?

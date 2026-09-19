@@ -1,6 +1,6 @@
 /// Represents blog posts published on the portfolio website
 model Blog {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   title     String
   slug      String   @unique

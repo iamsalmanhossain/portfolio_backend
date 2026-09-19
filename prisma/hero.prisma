@@ -1,5 +1,5 @@
 model HeroSection {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   // --- হিরো সেকশন (Hero Section) ---
   heroTitle       String // যেমন: "Hi, I am John Doe"

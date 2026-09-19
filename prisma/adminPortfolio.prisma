@@ -1,5 +1,5 @@
 model AdminPortfolioTemplate {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   // টেমপ্লেটের নাম (যেমন: "Minimalist Theme", "Developer Dark")
   templateName String

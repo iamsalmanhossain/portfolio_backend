@@ -21,6 +21,7 @@ const getMessages = catchAsync(async (req: Request, res: Response) => {
       limit: Number(req.query.limit) || 10,
       sortBy: (req.query.sortBy as string) || 'createdAt',
       sortOrder: (req.query.sortOrder as string) || 'desc',
+      status: (req.query.status as string) || undefined,
     };
 
     const result = await ContactService.getMessages(options)
@@ -42,6 +43,16 @@ const getMessages = catchAsync(async (req: Request, res: Response) => {
   }
 });
 
+const markAsRead = catchAsync(async (req: Request, res: Response) => {
+  const result = await ContactService.markAsRead(req.params.id as string);
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: "Message marked as read successfully",
+    data: result,
+  });
+});
+
 const deleteMessage = catchAsync(async (req: Request, res: Response) => {
   const result = await ContactService.deleteMessage(req.params.id as string);
   sendResponse(res, {
@@ -55,5 +66,6 @@ const deleteMessage = catchAsync(async (req: Request, res: Response) => {
 export const ContactController = {
   saveMessage,
   getMessages,
+  markAsRead,
   deleteMessage,
 };
