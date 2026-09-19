@@ -1,5 +1,5 @@
 model GithubStats {
-  id String @id @default(cuid())
+  id String @id @default(uuid())
 
   githubUsername String @unique
 
