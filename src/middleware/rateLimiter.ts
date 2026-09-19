@@ -11,7 +11,7 @@ const registerLimiter = createRateLimiter({
 // Login: ১৫ মিনিটে max ৫ বার
 const loginLimiter = createRateLimiter({
     prefix: "login",
-    max: 5,
+    max: 15,
     windowMs: 15 * 60 * 1000,
     message: "Too many login attempts. Please try again after 15 minutes.",
 });
