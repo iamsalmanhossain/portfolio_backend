@@ -10,6 +10,7 @@ const router = Router();
 router.post("/", validateRequest(createContactValidationSchema), ContactController.saveMessage);
 // Admin only endpoints
 router.get("/", isAuthenticated, ContactController.getMessages);
+router.patch("/:id/read", isAuthenticated, ContactController.markAsRead);
 router.delete("/:id", isAuthenticated, ContactController.deleteMessage);
 
 export const ContactRoutes: Router = router;
