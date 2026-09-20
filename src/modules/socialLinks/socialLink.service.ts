@@ -2,8 +2,18 @@ import { prisma } from "../../lib/prisma.js";
 import { TCreateSocialLink, TUpdateSocialLink } from "./socialLink.validation.js";
 
 const createSocialLink = async (payload: TCreateSocialLink) => {
+  let { heroSectionId, ...data } = payload;
+  
+  if (!heroSectionId) {
+    const activeHero = await prisma.heroSection.findFirst({ where: { isActive: true } });
+    if (!activeHero) {
+      throw new Error("No active hero section found to attach social link to.");
+    }
+    heroSectionId = activeHero.id;
+  }
+
   return await prisma.socialLink.create({
-    data: payload,
+    data: { ...data, heroSectionId },
   });
 };
 
