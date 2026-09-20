@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const createTestimonialValidationSchema = z.object({
-    body: z.object({
+    
     name: z.string().min(1, "Name is required"),
     designation: z.string().optional(),
     company: z.string().optional(),
@@ -9,10 +9,9 @@ export const createTestimonialValidationSchema = z.object({
     review: z.string().min(1, "Review is required"),
     featured: z.boolean().optional(),
 })
-})
 
 export const updateTestimonialValidationSchema = z.object({
-    body: z.object({
+    
     name: z.string().optional(),
     designation: z.string().optional(),
     company: z.string().optional(),
@@ -20,8 +19,7 @@ export const updateTestimonialValidationSchema = z.object({
     review: z.string().optional(),
     featured: z.boolean().optional(),
 })
-})
 
-export type TCreateTestimonial = z.infer<typeof createTestimonialValidationSchema>['body'];
-export type TUpdateTestimonial = z.infer<typeof updateTestimonialValidationSchema>['body'];
+export type TCreateTestimonial = z.infer<typeof createTestimonialValidationSchema>;
+export type TUpdateTestimonial = z.infer<typeof updateTestimonialValidationSchema>;
 

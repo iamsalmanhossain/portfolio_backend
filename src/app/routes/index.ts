@@ -9,6 +9,7 @@ import { ExperienceRoutes } from "../../modules/experience/experience.route.js";
 import { ContactRoutes } from "../../modules/contact/contact.route.js";
 import { UploadRoutes } from "../../modules/upload/upload.route.js";
 import { HeroRoutes } from "../../modules/heroSection/hero.route.js";
+import { AboutRoutes } from "../../modules/about/about.route.js";
 import { SocialLinkRoutes } from "../../modules/socialLinks/socialLink.route.js";
 import { EducationRoutes } from "../../modules/education/education.route.js";
 import { ServiceRoutes } from "../../modules/service/service.route.js";
@@ -61,6 +62,10 @@ const moduleRoutes = [
     {
         path: "/hero",
         route: HeroRoutes,
+    },
+    {
+        path: "/about",
+        route: AboutRoutes,
     },
     {
         path: "/social-links",

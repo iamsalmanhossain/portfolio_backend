@@ -8,12 +8,7 @@ import { StatusCodes } from "http-status-codes";
 const validateRequest = (schema: ZodTypeAny) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await schema.safeParseAsync({
-                body: req.body,
-                query: req.query,
-                params: req.params,
-                cookies: req.cookies
-            });
+            const result = await schema.safeParseAsync(req.body);
 
             if (!result.success) {
                 res.status(StatusCodes.BAD_REQUEST).json({
@@ -23,11 +18,7 @@ const validateRequest = (schema: ZodTypeAny) => {
                 });
                 return;
             }
-            const data = result.data as any;
-            if (data.body) req.body = data.body;
-            if (data.query) req.query = data.query;
-            if (data.params) req.params = data.params;
-            if (data.cookies) req.cookies = data.cookies;
+            req.body = result.data;
             next();
         } catch (error) {
             next(error);

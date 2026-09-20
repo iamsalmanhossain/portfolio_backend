@@ -2,7 +2,7 @@ import { z } from "zod";
 
 // Validation schema for creating a project entry
 export const createProjectValidationSchema = z.object({
-    body: z.object({
+    
     title: z.string().min(1, "Title is required"),
     description: z.string().min(1, "Description is required"),
     content: z.string().optional(),
@@ -21,11 +21,10 @@ export const createProjectValidationSchema = z.object({
     status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).default("PUBLISHED"),
     categoryId: z.string().optional(),
 })
-})
 
 // Validation schema for updating project details
 export const updateProjectValidationSchema = z.object({
-    body: z.object({
+    
     title: z.string().optional(),
     description: z.string().optional(),
     content: z.string().optional(),
@@ -44,10 +43,9 @@ export const updateProjectValidationSchema = z.object({
     status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).optional(),
     categoryId: z.string().optional(),
 })
-})
 
-export type TCreateProject = z.infer<typeof createProjectValidationSchema>['body']
-export type TUpdateProject = z.infer<typeof updateProjectValidationSchema>['body']
+export type TCreateProject = z.infer<typeof createProjectValidationSchema>
+export type TUpdateProject = z.infer<typeof updateProjectValidationSchema>
 
 
 
