@@ -20,6 +20,8 @@ model Project {
   // টেকনিক্যাল বিষয়
   technologies String[]
   role         String? // আপনার ভূমিকা (যেমন: "Full-Stack Developer")
+  team         String?
+  impact       String?
 
   // প্রজেক্টের সময়কাল (ঐচ্ছিক)
   startDate DateTime?
@@ -34,7 +36,9 @@ model Project {
 
   // রিলেশনস (আপনার করা বর্তমান চমৎকার ডিজাইন)
   tags         String[] // প্রজেক্টের ট্যাগসমূহ (যেমন: "Frontend", "Backend")
+  projectType  ProjectType @default(PERSONAL)
   categoryId   String?
   category     ProjectCategory? @relation(fields: [categoryId], references: [id])
   projectViews ProjectView[]
 }
+
