@@ -28,3 +28,9 @@ enum ContactStatus {
   READ
   REPLIED
 }
+
+enum ProjectType {
+  PERSONAL
+  CLIENT
+}
+

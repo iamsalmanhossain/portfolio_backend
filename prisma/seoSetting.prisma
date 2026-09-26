@@ -13,6 +13,7 @@ model SeoSetting {
   ogImage       String?
 
   twitterCard String? @default("summary_large_image")
+  fontFamily  String? @default("Inter")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -20,6 +20,7 @@ export const createProjectValidationSchema = z.object({
     featured: z.boolean().default(false),
     status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).default("PUBLISHED"),
     categoryId: z.string().optional(),
+    projectType: z.enum(['PERSONAL', 'CLIENT']).optional(),
 })
 
 // Validation schema for updating project details
@@ -42,6 +43,7 @@ export const updateProjectValidationSchema = z.object({
     featured: z.boolean().optional(),
     status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).optional(),
     categoryId: z.string().optional(),
+    projectType: z.enum(['PERSONAL', 'CLIENT']).optional(),
 })
 
 export type TCreateProject = z.infer<typeof createProjectValidationSchema>

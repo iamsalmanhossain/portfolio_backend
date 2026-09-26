@@ -79,3 +79,4 @@ if (process.env.VERCEL) {
 
 // Export the app for Vercel's serverless environment
 export default application;
+
