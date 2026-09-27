@@ -21,6 +21,8 @@ enum SkillCategory {
   DATABASE
   DEVOPS
   TOOL
+  TESTING
+  CORE_ENGINEERING
 }
 
 enum ContactStatus {
@@ -33,4 +35,3 @@ enum ProjectType {
   PERSONAL
   CLIENT
 }
-
