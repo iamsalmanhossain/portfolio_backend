@@ -4,7 +4,7 @@ model Skill {
   icon     String?
   level    Int?
   category SkillCategory @default(FRONTEND)
-  showIn3d Boolean? @default(true)
+  showIn3d Boolean?      @default(true)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
