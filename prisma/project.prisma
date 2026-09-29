@@ -7,7 +7,11 @@ model Project {
   // সামারি এবং বিস্তারিত
   description String // প্রজেক্ট কার্ডে দেখানোর জন্য ছোট ডেসক্রিপশন
   content     String? // (Rich Text) যেখানে Overview, Problem, Solution বিস্তারিত থাকবে
-  features    String[] // মূল ফিচারগুলোর লিস্ট (যেমন: ["Auth", "Stripe Payment"])
+
+  overviewTitle String?
+  overviewDesc  String?
+
+  // features String[] => moved to ProjectFeature model
 
   thumbnails String[] // প্রজেক্টের কাভার ইমেজগুলো (একের অধিক)
 
@@ -26,19 +30,44 @@ model Project {
   // প্রজেক্টের সময়কাল (ঐচ্ছিক)
   startDate DateTime?
   endDate   DateTime?
+  duration  String? // e.g. "3 Months"
 
   // স্ট্যাটাস এবং মেটাডেটা
-  featured Boolean       @default(false)
-  status   ProjectStatus @default(PUBLISHED)
+  featured   Boolean       @default(false)
+  status     ProjectStatus @default(PUBLISHED)
+  statusText String? // e.g. "Production"
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // রিলেশনস (আপনার করা বর্তমান চমৎকার ডিজাইন)
-  tags         String[] // প্রজেক্টের ট্যাগসমূহ (যেমন: "Frontend", "Backend")
-  projectType  ProjectType @default(PERSONAL)
-  categoryId   String?
-  category     ProjectCategory? @relation(fields: [categoryId], references: [id])
-  projectViews ProjectView[]
+  tags               String[] // প্রজেক্টের ট্যাগসমূহ (যেমন: "Frontend", "Backend")
+  projectType        ProjectType         @default(PERSONAL)
+  categoryId         String?
+  category           ProjectCategory?    @relation(fields: [categoryId], references: [id])
+  projectViews       ProjectView[]
+  projectScreenshots ProjectScreenshot[]
+  projectFeatures    ProjectFeature[]
 }
 
+model ProjectScreenshot {
+  id          String   @id @default(uuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  imageUrl    String
+  title       String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ProjectFeature {
+  id          String   @id @default(uuid())
+  projectId   String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  icon        String?
+  title       String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
