@@ -11,14 +11,14 @@ model HeroSection {
   resumeUrl    String? // CV ডাউনলোড লিংক
 
   // --- অ্যাবাউট সেকশন (About Section) ---
-  experienceYears Int?   @default(0) // কত বছরের অভিজ্ঞতা (যেমন: 2)
-  totalProjects   Int?   @default(0) // কতগুলো প্রজেক্ট করেছেন (যেমন: 15)
-  totalToolsAndTech Int?   @default(0)
+  experienceYears   Int? @default(0) // কত বছরের অভিজ্ঞতা (যেমন: 2)
+  totalProjects     Int? @default(0) // কতগুলো প্রজেক্ট করেছেন (যেমন: 15)
+  totalToolsAndTech Int? @default(0)
 
   // --- কন্টাক্ট এবং সোশ্যাল লিংক (Contact & Social) ---
-  email    String?
-  phone    String?
-  location String? // যেমন: "Dhaka, Bangladesh"
+  email       String?
+  phone       String?
+  location    String? // যেমন: "Dhaka, Bangladesh"
   // social links
   socialLinks SocialLink[]
 
