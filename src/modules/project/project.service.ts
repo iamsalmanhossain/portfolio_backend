@@ -73,6 +73,7 @@ const getAllProjects = async (options: {
       category: true,
       projectScreenshots: true,
       projectFeatures: true,
+      tags: true,
       _count: { select: { projectViews: true } }
     },
     orderBy: { [sortBy]: sortOrder }
