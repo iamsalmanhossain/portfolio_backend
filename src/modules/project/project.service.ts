@@ -63,16 +63,23 @@ const getAllProjects = async (options: {
       videoUrl: true,
       technologies: true,
       role: true,
+      team: true,
+      impact: true,
       startDate: true,
       endDate: true,
       duration: true,
       featured: true,
       status: true,
+      statusText: true,
+      content: true,
+      overviewTitle: true,
+      overviewDesc: true,
       projectType: true,
       categoryId: true,
       category: true,
       projectScreenshots: true,
       projectFeatures: true,
+      tags: true,
       _count: { select: { projectViews: true } }
     },
     orderBy: { [sortBy]: sortOrder }
@@ -93,8 +100,10 @@ const getAllProjects = async (options: {
 const getProjectById = async (id: string) => {
   return await prisma.project.findUnique({
     where: { id },
-    include: {
+    select: {
       category: true,
+      projectScreenshots: true,
+      projectFeatures: true,
       _count: { select: { projectViews: true } }
     },
   });
