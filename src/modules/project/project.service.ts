@@ -63,6 +63,8 @@ const getAllProjects = async (options: {
       videoUrl: true,
       technologies: true,
       role: true,
+      team: true,
+      impact: true,
       startDate: true,
       endDate: true,
       duration: true,
