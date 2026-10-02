@@ -1,3 +1,4 @@
+import { cacheMiddleware } from "../../middleware/cache.middleware.js";
 import { Router } from "express";
 import validateRequest from "../../middleware/validateRequest.js";
 import isAuthenticated from "../../middleware/authenticate.js";
@@ -8,8 +9,8 @@ const router = Router();
 
 // Project Routes
 router.post("/", isAuthenticated, validateRequest(createProjectValidationSchema), ProjectController.createProject);
-router.get("/", ProjectController.getAllProjects);
-router.get("/:id", ProjectController.getProjectById);
+router.get("/", cacheMiddleware(), ProjectController.getAllProjects);
+router.get("/:id", cacheMiddleware(), ProjectController.getProjectById);
 router.patch("/:id", isAuthenticated, validateRequest(updateProjectValidationSchema), ProjectController.updateProject);
 router.delete("/:id", isAuthenticated, ProjectController.deleteProject);
 

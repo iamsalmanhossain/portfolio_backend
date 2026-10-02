@@ -1,3 +1,4 @@
+import { cacheMiddleware } from "../../middleware/cache.middleware.js";
 import express, { Router } from "express";
 import { AdminPortfolioController } from "./adminPortfolio.controller.js";
 import validateRequest from "../../middleware/validateRequest.js";
@@ -7,7 +8,7 @@ import { AdminPortfolioValidation } from "./adminPortfolio.validation.js";
 const router = express.Router();
 
 // Get the active template for the home page (Public)
-router.get("/active", AdminPortfolioController.getActiveTemplate);
+router.get("/active", cacheMiddleware(), AdminPortfolioController.getActiveTemplate);
 
 // Get all templates (Admin only)
 router.get("/", isAuthenticated, AdminPortfolioController.getAllTemplates);
