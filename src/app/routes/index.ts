@@ -105,6 +105,9 @@ const moduleRoutes = [
     }
 ];
 
+import { clearCacheMiddleware } from "../../middleware/cache.middleware.js";
+router.use(clearCacheMiddleware);
+
 // Mount each feature module route to the base router path
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
 
