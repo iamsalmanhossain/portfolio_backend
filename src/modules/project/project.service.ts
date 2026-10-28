@@ -82,7 +82,7 @@ const getAllProjects = async (options: {
       tags: true,
       _count: { select: { projectViews: true } }
     },
-    orderBy: { [sortBy]: sortOrder }
+    orderBy: { createdAt: "asc" }
   });
 
   const total = await prisma.project.count();
