@@ -32,3 +32,5 @@ testimonial.md
 blog.md
 certificate.md
 seoSetting.md
+.vercel
+.env*.local
